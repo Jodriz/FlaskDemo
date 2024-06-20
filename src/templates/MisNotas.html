@@ -1,0 +1,119 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="col InIn">
+    {% with messages = get_flashed_messages()  %}
+    {% if messages %}
+    {% for message in messages %}
+
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    
+    
+    <div class="card card-body">
+        <form action="{{url_for('add_notasu')}}" method="POST">
+        <div class="form-group">
+            <input type="text" class="form-control" name="nombreu" placeholder="Identificador de Usuario" required>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" name="titulo" placeholder="Identificador de Nota" required>
+        </div>
+        <button class="btn btn-primary btn-block TDTitulo">
+            Guardar 
+        </button>
+        </form>
+    </div>
+
+</div>
+
+<div class="col">
+    <table class="table table-striped table-hover table-bordered table-sm bg-white">
+        <p></p>
+        <a href="/Crear-TipoNota/" class="boton btn btn-success TDTitulo">Crear nuevo tipo nota</a>
+        <thead>
+            <tr>
+                <td bgcolor= "#1768AC" class="TDTitulo">TIPO DE NOTA</td>
+            </tr>
+        </thead>
+        <tbody>
+        {% for us in no %}
+        <thead>
+            <tr>
+                <td>{{us.0}}</td>
+            </tr>
+        </thead>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+
+
+<div class="row">
+    <div class="col">
+    <table class="table table-striped table-hover table-bordered table-sm bg-white">
+        <p></p>
+        <thead>
+            <tr>
+                <td bgcolor= "#1768AC" class="TDTitulo">IDENTIFICADOR</td>
+                <td bgcolor= "#1768AC" class="TDTitulo">TIPO</td>
+                <td bgcolor= "#1768AC" class="TDTitulo">USUARIO</td>
+            </tr>
+        </thead>
+        <tbody>
+        {% for us in usua %}
+        <thead>
+            <tr>
+                <td>{{us.0}}</td>
+                <td>{{us.1}}</td>
+                <td>{{us.2}}</td>
+            </tr>
+        </thead>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+
+    <div class="col">
+        <table class="table table-striped table-hover table-bordered table-sm bg-white">
+            <p></p>
+            <a href="/crearnota/" class="boton btn btn-success TDTitulo">Crear nueva nota</a>
+            <thead>
+                <tr>
+                    <td bgcolor= "#1768AC" class="TDTitulo">IDENTIFICADOR</td>
+                    <td bgcolor= "#1768AC" class="TDTitulo">TIPO</td>
+                    <td bgcolor= "#1768AC" class="TDTitulo">TITULO</td>
+                    <td bgcolor= "#1768AC" class="TDTitulo">CONTENIDO</td>
+                    <td bgcolor= "#1768AC" class="TDTitulo">OPCIONES</td>
+                </tr>
+            </thead>
+            <tbody>
+            {% for no in nos %}
+            <thead>
+                <tr>
+                    <td>{{no.0}}</td>
+                    <td>{{no.1}}</td>
+                    <td>{{no.2}}</td>
+                    <td>{{no.3}}</td>
+                    <td>
+                        <a href="/edit/{{no.0}}" class="boton btn btn-success TDTitulo">Editar</a>
+                    </td>
+                </tr>
+            </thead>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+</div>
+
+{% endblock %}
